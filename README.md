@@ -19,9 +19,8 @@ To view the resume locally:
 
 The page includes:
 
-- Smooth scrolling navigation between sections
-- Accordion-style entries for experience
-- Light/dark theme toggle
-- Scroll animations highlighting each section
+- Landing menu with buttons for each résumé section
+- Distinct color themes and animated transitions per section
+- Accordion-style entries for detailed experience
 
 Feel free to customize the content or styles to suit your needs.

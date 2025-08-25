@@ -1,114 +1,103 @@
-/* Theme variables */
+/* Base variables */
 :root {
   --bg: #f5f5f5;
   --text: #222;
   --accent: #0077b6;
-  --card-bg: #ffffff;
-}
-
-body.dark {
-  --bg: #1a1a1a;
-  --text: #e5e5e5;
-  --accent: #90e0ef;
-  --card-bg: #2a2a2a;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --card-bg: rgba(255,255,255,0.8);
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
-  scroll-behavior: smooth;
-  transition: background 0.5s, color 0.5s;
+  transition: background 0.6s ease, color 0.6s ease;
+  min-height: 100vh;
+  margin: 0;
 }
 
-nav {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: var(--bg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  z-index: 1000;
-}
+.hidden { display: none !important; }
 
-nav .logo {
-  font-weight: 700;
-  font-size: 1.2rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 700;
-  transition: color 0.3s;
-}
-
-nav a:hover, nav a.active {
-  color: var(--accent);
-}
-
-#theme-toggle {
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-#theme-toggle:hover {
-  opacity: 0.8;
-}
-
-.hero {
-  height: 100vh;
-  background: linear-gradient(135deg, #0077b6, #90e0ef);
-  color: #fff;
+/* Menu */
+.menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   text-align: center;
+  animation: fadeIn 0.8s ease forwards;
 }
 
-.content-section {
-  max-width: 900px;
+.title { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.contact { margin-bottom: 2rem; }
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 80%;
+  max-width: 800px;
+}
+
+.section-btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  background: var(--btn-color, var(--accent));
+  background-size: 200% 200%;
+  transition: transform 0.3s, background-position 0.5s, box-shadow 0.3s;
+}
+
+.section-btn:hover {
+  transform: translateY(-5px) scale(1.03);
+  background-position: right center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Individual button themes */
+.section-btn.education { --btn-color: linear-gradient(135deg,#64b5f6,#1976d2); }
+.section-btn.academic { --btn-color: linear-gradient(135deg,#ba68c8,#6a1b9a); }
+.section-btn.publications { --btn-color: linear-gradient(135deg,#ffb74d,#ef6c00); }
+.section-btn.professional { --btn-color: linear-gradient(135deg,#81c784,#2e7d32); }
+.section-btn.leadership { --btn-color: linear-gradient(135deg,#f06292,#c2185b); }
+.section-btn.skills { --btn-color: linear-gradient(135deg,#b39ddb,#4527a0); }
+
+/* Resume sections */
+.resume-section {
+  position: fixed;
+  inset: 0;
+  display: none;
+  padding: 4rem 2rem;
+  overflow-y: auto;
+}
+
+.resume-section.active {
+  display: block;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.section-inner {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 4rem 1rem;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.6s ease-out;
 }
 
-.content-section.show {
-  opacity: 1;
-  transform: translateY(0);
+.section-inner h2 {
+  margin-bottom: 1rem;
+  color: var(--accent);
 }
 
 .card {
   background: var(--card-bg);
-  border-radius: 8px;
+  backdrop-filter: blur(4px);
   padding: 1.5rem;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
+/* Accordion */
 .accordion-item {
   margin-bottom: 1rem;
   border-radius: 8px;
@@ -119,19 +108,19 @@ nav a:hover, nav a.active {
 .accordion-header {
   width: 100%;
   text-align: left;
-  background: var(--accent);
-  color: #fff;
   border: none;
   padding: 1rem;
   font-size: 1rem;
   cursor: pointer;
+  background: var(--accent);
+  color: #fff;
 }
 
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  background: var(--card-bg);
   transition: max-height 0.3s ease-out;
+  background: var(--card-bg);
   padding: 0 1rem;
 }
 
@@ -140,8 +129,53 @@ nav a:hover, nav a.active {
   padding: 1rem;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  background: var(--bg);
+.back-btn {
+  margin-top: 2rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.3s;
 }
+
+.back-btn:hover { opacity: 0.8; }
+
+/* Section themes */
+body.theme-education {
+  --bg: #e3f2fd;
+  --accent: #1565c0;
+}
+
+body.theme-academic {
+  --bg: #f3e5f5;
+  --accent: #6a1b9a;
+}
+
+body.theme-publications {
+  --bg: #fff3e0;
+  --accent: #ef6c00;
+}
+
+body.theme-professional {
+  --bg: #e8f5e9;
+  --accent: #2e7d32;
+}
+
+body.theme-leadership {
+  --bg: #fce4ec;
+  --accent: #c2185b;
+}
+
+body.theme-skills {
+  --bg: #ede7f6;
+  --accent: #4527a0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
