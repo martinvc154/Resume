@@ -1,0 +1,181 @@
+/* Base variables */
+:root {
+  --bg: #f5f5f5;
+  --text: #222;
+  --accent: #0077b6;
+  --card-bg: rgba(255,255,255,0.8);
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.6s ease, color 0.6s ease;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.hidden { display: none !important; }
+
+/* Menu */
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.title { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.contact { margin-bottom: 2rem; }
+
+.btn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  width: 80%;
+  max-width: 800px;
+}
+
+.section-btn {
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #fff;
+  cursor: pointer;
+  background: var(--btn-color, var(--accent));
+  background-size: 200% 200%;
+  transition: transform 0.3s, background-position 0.5s, box-shadow 0.3s;
+}
+
+.section-btn:hover {
+  transform: translateY(-5px) scale(1.03);
+  background-position: right center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Individual button themes */
+.section-btn.education { --btn-color: linear-gradient(135deg,#64b5f6,#1976d2); }
+.section-btn.academic { --btn-color: linear-gradient(135deg,#ba68c8,#6a1b9a); }
+.section-btn.publications { --btn-color: linear-gradient(135deg,#ffb74d,#ef6c00); }
+.section-btn.professional { --btn-color: linear-gradient(135deg,#81c784,#2e7d32); }
+.section-btn.leadership { --btn-color: linear-gradient(135deg,#f06292,#c2185b); }
+.section-btn.skills { --btn-color: linear-gradient(135deg,#b39ddb,#4527a0); }
+
+/* Resume sections */
+.resume-section {
+  position: fixed;
+  inset: 0;
+  display: none;
+  padding: 4rem 2rem;
+  overflow-y: auto;
+}
+
+.resume-section.active {
+  display: block;
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.section-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.section-inner h2 {
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+
+.card {
+  background: var(--card-bg);
+  backdrop-filter: blur(4px);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Accordion */
+.accordion-item {
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.accordion-header {
+  width: 100%;
+  text-align: left;
+  border: none;
+  padding: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  background: var(--accent);
+  color: #fff;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background: var(--card-bg);
+  padding: 0 1rem;
+}
+
+.accordion-item.open .accordion-content {
+  max-height: 500px;
+  padding: 1rem;
+}
+
+.back-btn {
+  margin-top: 2rem;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.back-btn:hover { opacity: 0.8; }
+
+/* Section themes */
+body.theme-education {
+  --bg: #e3f2fd;
+  --accent: #1565c0;
+}
+
+body.theme-academic {
+  --bg: #f3e5f5;
+  --accent: #6a1b9a;
+}
+
+body.theme-publications {
+  --bg: #fff3e0;
+  --accent: #ef6c00;
+}
+
+body.theme-professional {
+  --bg: #e8f5e9;
+  --accent: #2e7d32;
+}
+
+body.theme-leadership {
+  --bg: #fce4ec;
+  --accent: #c2185b;
+}
+
+body.theme-skills {
+  --bg: #ede7f6;
+  --accent: #4527a0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
